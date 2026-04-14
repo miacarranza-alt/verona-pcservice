@@ -119,6 +119,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background-image: none !important;
   }
 </style>
+<link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+<script src="cookie-banner/silktide-consent-manager.js"></script>
+<script>
+silktideCookieBannerManager.updateCookieBannerConfig({
+  background: {
+    showBackground: true
+  },
+  cookieIcon: {
+    position: "bottomLeft"
+  },
+  cookieTypes: [
+    {
+      id: "necesarias",
+      name: "Necesarias",
+      description: "<p>Estas cookies son necesarias para el buen funcionamiento del sitio y no pueden ser apagadas. Ayudan con cosas como establecer tus preferencias de privacidad.</p>",
+      required: true,
+      onAccept: function() {
+        console.log('Add logic for the required Necesarias here');
+      }
+    },
+    {
+      id: "anal_tica",
+      name: "Analítica",
+      description: "<p>Estas cookies nos ayudan a mejorar el sitio midiendo qué páginas son más populares y de qué manera los visitantes navegan el sitio.</p>",
+      required: false,
+      onAccept: function() {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+        });
+        dataLayer.push({
+          'event': 'consent_accepted_anal_tica',
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          analytics_storage: 'denied',
+        });
+      }
+    },
+    {
+      id: "publicidad",
+      name: "Publicidad",
+      description: "<p>Estas cookies proveen funcionalidades adicionales y personalización para mejorar tu experiencia. Pueden ser configuradas por nosotros o por partners que nos proveen servicios.</p>",
+      required: false,
+      onAccept: function() {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+        });
+        dataLayer.push({
+          'event': 'consent_accepted_publicidad',
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        });
+      }
+    }
+  ],
+  text: {
+    banner: {
+      description: "<p>Usamos cookies en nuestro sitio para mejorar tu experiencia, habilitar contenido personalizado y analizar nuestro tráfico.&nbsp;<a href=\"https://pcservice.es/politica-de-cookies\" target=\"_blank\">Política de cookies.</a></p>",
+      acceptAllButtonText: "Aceptar todas",
+      acceptAllButtonAccessibleLabel: "Aceptar todas las cookies",
+      rejectNonEssentialButtonText: "Rechazar las no esenciales",
+      rejectNonEssentialButtonAccessibleLabel: "Rechazar las no esenciales",
+      preferencesButtonText: "Preferencias",
+      preferencesButtonAccessibleLabel: "Alternar preferencias"
+    },
+    preferences: {
+      title: "Personalizar tus preferencias respecto a las cookies",
+      description: "<p>Respetamos tu derecho a la privacidad. Puedes elegir que no usemos algunos tipos de cookies. Tus preferencias aplicarán a todas las páginas de nuestro sitio.</p>",
+      creditLinkText: "Obtener este banner de manera gratuita",
+      creditLinkAccessibleLabel: "Obtener este banner de manera gratuita"
+    }
+  }
+});
+</script>
 </head>
 <body class="font-body text-on-surface antialiased selection:bg-primary-container selection:text-white">
 <!-- Google Tag Manager (noscript) -->
